@@ -4,6 +4,9 @@ from dotenv import load_dotenv
 from discord.ext import commands
 import discord
 import asyncio
+from decimal import *
+import basic_features as basic
+import voice_channel as advanced
 
 class MyCommandBot(commands.Bot):
     def __init__(self, *args, **kwargs):
@@ -16,23 +19,6 @@ class MyCommandBot(commands.Bot):
         print(f'Message from {message.author}: {message.content}')
         await super().on_message(message)
 
-
-class Greetings(commands.Cog):
-    def __init__(self, bot: commands.Bot):
-        self.bot = bot
-        self._last_member = None
-
-    @commands.command()
-    async def hello(self, ctx: Context, *, member: discord.Member = None):
-        """Says hello"""
-        member = member or ctx.author
-        if self._last_member is None or self._last_member.id != member.id:
-            await ctx.send(f'Hello {member.name}~')
-        else:
-            await ctx.send(f'Hello {member.name}... This feels familiar.')
-        self._last_member = member
-
-
 async def create_bot():
     # Intents
     intents = discord.Intents.default()
@@ -40,17 +26,16 @@ async def create_bot():
 
     # Add commands by cog
     bot = MyCommandBot(command_prefix='!', intents=intents)
-
-    await bot.add_cog( Greetings(bot) )
-
+    await bot.add_cog(basic.Greetings(bot))
+    await bot.add_cog(basic.Repeat(bot))
+    await bot.add_cog(basic.Change(bot))
+    await bot.add_cog(basic.Cal_gpa(bot))
+    await bot.add_cog(advanced.Tts_features(bot))
     return bot
-
 
 def main():
     load_dotenv()
-
-    bot = asyncio.run( create_bot() )
-
+    bot = asyncio.run(create_bot())
     TOKEN = os.getenv('DISCORD_TOKEN')
     bot.run(TOKEN)
 

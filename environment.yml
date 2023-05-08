@@ -5,6 +5,8 @@ dependencies:
   - python=3.9
   - pip
   - pip:
-      - discord-py==2.2.2
+      # - discord-py==2.2.2
+      - discord.py[voice]
       - python-dotenv
-
+      - PyNaCl
+      - gTTS
