@@ -3,7 +3,6 @@ from discord.ext.commands.context import Context
 from dotenv import load_dotenv
 from discord.ext import commands
 import discord
-
 import asyncio
 
 class MyCommandBot(commands.Bot):
@@ -57,4 +56,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -1,8 +1,6 @@
 import os
 from dotenv import load_dotenv
 import discord
-
-import discord
 from discord.ext import commands
 from discord.ext.commands import Context
 

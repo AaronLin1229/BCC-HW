@@ -14,12 +14,12 @@ class Basic(commands.Cog):
     async def hello(self, ctx: Context, *, member: discord.Member = None):
         # [TODO]
         pass
-    
+
     @commands.command()
     async def say(self, ctx: Context, *, s: str):
         # [TODO]
         pass
-        
+
     @commands.command()
     async def prefix(self, ctx: Context, s: str):
         # [TODO]
